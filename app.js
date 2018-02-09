@@ -97,7 +97,7 @@ var verify_api = function(req, res, next){
 var cart = function(req, res, next){
     client.incr("orderid", function(err, data){
         if(err) res.sendStatus(503);
-        else res.status(200).send({"orderid": data, "version": process.env.APP_VERSION});
+        else res.status(200).send({"orderid": "test" + data, "version": process.env.APP_VERSION});
     });
 }
 
