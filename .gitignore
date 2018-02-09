@@ -1,0 +1,7 @@
+.idea*
+docs/site/
+*.log
+node_modules/*
+*.swp
+*DS_Store
+.vscode

@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: notification-v1
+  namespace: ${ISTIO_DEMO_NS}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: notification
+        version: v1
+        type: api-server
+    spec:
+      containers:
+      - name: notification
+        image: ${IMG_URL}:${ISTIO_DEMO_VERSION}
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: notification
+        - name: NOT_DELAY
+          value: "1"
+        - name: APP_VERSION
+          value: v1
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification
+  namespace: ${ISTIO_DEMO_NS}
+  labels:
+    app: notification
+spec:
+  ports:
+  - port: 3000
+    name: http
+  selector:
+    app: notification
+---

@@ -1,0 +1,17 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: ${DEPLOYMENT_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  destination:
+    name: ${APP_NAME}
+  precedence: 2
+  match:
+    request:
+      headers:
+        ${APP_NAME}:
+          regex: ${DEPLOYMENT_NAME}
+  route:
+  - labels:
+      version: ${DEPLOYMENT_NAME}

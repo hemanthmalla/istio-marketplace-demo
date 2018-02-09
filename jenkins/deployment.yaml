@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ${DEPLOYMENT_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+        version: ${DEPLOYMENT_NAME}
+        type: api-server
+    spec:
+      containers:
+      - name: ${DEPLOYMENT_NAME}
+        image: ${IMG_URL}:${BUILD_TAG}
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: ${APP_NAME}
+        - name: APP_VERSION
+          value: ${DEPLOYMENT_NAME}
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
+      restartPolicy: Always

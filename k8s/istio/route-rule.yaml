@@ -1,0 +1,36 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: shipper-v1
+  namespace: istio-demo
+spec:
+  destination:
+    name: shipper
+  precedence: 2
+  match:
+    request:
+      headers:
+        shipper:
+          regex: v1
+  route:
+  - labels:
+      version: v1
+---
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: shipper-v2
+  namespace: istio-demo
+spec:
+  destination:
+    name: shipper
+  precedence: 2
+  match:
+    request:
+      headers:
+        shipper:
+          regex: v2
+  route:
+  - labels:
+      version: v2
+
