@@ -13,15 +13,15 @@ podTemplate(label: 'pipeline_app', containers: [
     ]
 )
 
-properties([
-        parameters([
-            string(description: 'AWS ECR URL', name: 'registry_url'),
-            string(defaultValue: 'ap-southeast-1', description: 'AWS Region', name: 'region')
-        ])
-])
-
 {
     node('pipeline_app') {
+
+        properties([
+                parameters([
+                    string(description: 'AWS ECR URL', name: 'registry_url'),
+                    string(defaultValue: 'ap-southeast-1', description: 'AWS Region', name: 'region')
+                ])
+        ])
 
         checkout scm
 
