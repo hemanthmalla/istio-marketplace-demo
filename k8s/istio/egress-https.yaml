@@ -1,0 +1,10 @@
+kind: EgressRule
+metadata:
+  name: egress-https-rule
+spec:
+  destination:
+    service: "0.0.0.0/0"
+  ports:
+    - port: 443
+      protocol: tcp
+  use_egress_proxy: false
