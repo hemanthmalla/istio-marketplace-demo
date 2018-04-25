@@ -1,0 +1,10 @@
+kind: EgressRule
+metadata:
+  name: egress-http-rule
+spec:
+  destination:
+    service: "*"
+  ports:
+    - port: 80
+      protocol: http
+  use_egress_proxy: false

@@ -10,7 +10,7 @@ spec:
   match:
     request:
       headers:
-        shipper:
+        hprop-shipper:
           regex: v1
   route:
   - labels:
@@ -28,7 +28,7 @@ spec:
   match:
     request:
       headers:
-        shipper:
+        hprop-shipper:
           regex: v2
   route:
   - labels:
